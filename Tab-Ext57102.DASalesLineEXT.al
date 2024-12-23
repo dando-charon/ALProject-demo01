@@ -56,7 +56,7 @@ tableextension 57102 "DA Sales Line EXT" extends "Sales line"
 
         else begin
             Message('過去の販売実績を確認中');
-
+            qty := 0;
 
             if SalesInvLine.findSet() then begin
                 repeat
@@ -67,7 +67,9 @@ tableextension 57102 "DA Sales Line EXT" extends "Sales line"
                             SalesInvLine."No.",
                             SalesInvLine.Quantity,
                             SalesInvLine."Bill-to Customer No.");
+                    qty := qty + SalesInvLine.Quantity;
                 until SalesInvLine.next() = 0;
+                Message('過去の販売実績累計 : %1 個', qty);
             end else begin
                 Message('No Sales Invoice Lines found.');
             end;
