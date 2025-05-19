@@ -59,6 +59,10 @@ tableextension 57102 "DA Sales Line EXT" extends "Sales line"
             qty := 0;
 
             if SalesInvLine.findSet() then begin
+                //repeatの代わりに下記のように書くことができる。
+                //SalesInvLine.CalcSums(Quantity,"Line Amount");
+                //qty:= SalesInvLine.Quantity;
+                //amount := SalesInvLine."Line Amount";
                 repeat
                     // データを表示
                     Message('商品名 : %1, Line No.: %2, Item No.: %3, Quantity: %4, 注文者 : %5',
